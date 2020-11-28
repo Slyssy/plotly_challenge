@@ -34,8 +34,11 @@
               var names = data.samples.map(d => d.id);
               var ele = document.getElementById("selDataset");
               for (var i=0;i<names.length; i++){
-                ele.innerHTML = ele.innerHTML +
-                '<option value=" + names[i]['id']"</option>';
+                var opt = options[i];
+                var el = document.createElement('option');
+                ele.textContent = opt;
+                el.value = opt;
+                select.appendChild(el);
               }
             }
           </script>
