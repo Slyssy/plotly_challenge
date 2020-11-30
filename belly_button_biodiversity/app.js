@@ -76,18 +76,28 @@ d3.json("samples.json").then(
             marker: {
                 size: sample.sample_values.sort(),
                 color: sample.otu_ids.sort(), 
-                colorscale: 'RdBu',
-                opacity: [1, 0.8, 0.6, 0.4],
+                colorscale: 'Portland',
+                type: 'heatmap',                
             }
         };
         
         var data = [trace1];
         
-        var layout = {
-            title: 'Distribution of Microbial Units Present',
+        var layout = {            
             showlegend: false,
             height: 600,
-            width: 600
+            width: 1200,
+            xaxis: {
+                title: {
+                  text: 'OTU_ID',
+                  font: {
+                    family: 'Helvetica, monospace',
+                    size: 18,
+                    color: '#7f7f7f',
+                  }
+                },
+              },
+            
         };
         
         Plotly.newPlot('bubble', data, layout);
