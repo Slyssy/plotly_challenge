@@ -26,16 +26,16 @@ d3.json("samples.json").then(
         //     }
         // };
         
-        // var data = [trace1];
+        // var bubble_data = [trace1];
         
         // var layout = {
-        //     title: 'Marker Size and Color',
+        //     title: 'Distribution of Microbial Units Present',
         //     showlegend: false,
         //     height: 600,
         //     width: 600
         // };
         
-        // Plotly.newPlot('bubble', data, layout);
+        // Plotly.newPlot('bubble', bubble_data, layout);
         
         dataset = data   
         // console.log("Hello")
@@ -70,20 +70,21 @@ d3.json("samples.json").then(
 
         // Building Bubble Chart
         var trace1 = {
-            x: sample.otu_ids,
-            y: sample.sample_values,
+            x: sample.otu_ids.sort(),
+            y: sample.sample_values.sort(),
             mode: 'markers',
             marker: {
-            color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
-            opacity: [1, 0.8, 0.6, 0.4],
-            size: [40, 60, 80, 100]
+                size: sample.sample_values.sort(),
+                color: sample.otu_ids.sort(), 
+                colorscale: 'RdBu',
+                opacity: [1, 0.8, 0.6, 0.4],
             }
         };
         
         var data = [trace1];
         
         var layout = {
-            title: 'Marker Size and Color',
+            title: 'Distribution of Microbial Units Present',
             showlegend: false,
             height: 600,
             width: 600
@@ -92,25 +93,26 @@ d3.json("samples.json").then(
         Plotly.newPlot('bubble', data, layout);
 
         // Metadata Table
+        var meta = dataset.metadata.find(d => d.id == value)
+            console.log(meta);
+            
         let table = d3.select("#metadata-table")
 
         table.selectAll("tr").remove()
 
         let tableBody = table.append("tbody")
-        dataset.metadata.forEach((d) => {
+        
             let row = tableBody.append("tr")
-            row.append("tr").text(d.id)
-            row.append("tr").text(d.ethnicity)
-            row.append("tr").text(d.gender)
-            row.append("tr").text(d.age)
-            row.append("tr").text(d.location)
-            row.append("tr").text(d.bbtype)
-            row.append("tr").text(d.wfreq)
+            row.append("tr").text('id: ' + meta.id)
+            row.append("tr").text('ethinicity: ' + meta.ethnicity)
+            row.append("tr").text('gender: ' + meta.gender)
+            row.append("tr").text('age: ' + meta.age)
+            row.append("tr").text('location: ' + meta.location)
+            row.append("tr").text('bbtype: ' + meta.bbtype)
+            row.append("tr").text('wfreq: ' + meta.wfreq)
         })
 
     }
-    )
-
-        }   
+      
 
     
