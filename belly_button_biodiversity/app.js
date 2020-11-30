@@ -13,33 +13,10 @@ d3.json("samples.json").then(
 
           ele.add(el);
         };
-
-        // // Building Bubble Chart
-        // var trace1 = {
-        //     x: data.samples.map(d => d.otu_ids),
-        //     y: data.samples.map(d => d.sample_values),
-        //     mode: 'markers',
-        //     marker: {
-        //     color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
-        //     opacity: [1, 0.8, 0.6, 0.4],
-        //     size: [40, 60, 80, 100]
-        //     }
-        // };
-        
-        // var bubble_data = [trace1];
-        
-        // var layout = {
-        //     title: 'Distribution of Microbial Units Present',
-        //     showlegend: false,
-        //     height: 600,
-        //     width: 600
-        // };
-        
-        // Plotly.newPlot('bubble', bubble_data, layout);
         
         dataset = data   
         // console.log("Hello")
-        console.log(data)
+        // console.log(data)
         // console.log(data.samples.map(d => d.id))
         // console.log(data.names.map(d => d.names))
         // console.log(data.samples.map(d => d.sample_values))
@@ -53,7 +30,7 @@ d3.json("samples.json").then(
         d3.json("samples.json").then(
             data => {
         //     console.log('clicked:', value);
-            console.log(dataset);
+        //     console.log(dataset);
 
         var sample = dataset.samples.find(d => d.id === value)
             console.log(sample);
@@ -66,7 +43,10 @@ d3.json("samples.json").then(
             y: sample.otu_ids.sort((a, b) => b - a).slice(0,10).map(otu_id => `OTU ${otu_id}`).reverse(),
             orientation: 'h'
         }];
+
+        
         Plotly.newPlot("bar", trace)
+        
 
         // Building Bubble Chart
         var trace1 = {
@@ -78,8 +58,8 @@ d3.json("samples.json").then(
                 color: sample.otu_ids.sort(), 
                 colorscale: 'Portland',
                 type: 'heatmap',                
-            }
-        };
+        }
+    };
         
         var data = [trace1];
         
