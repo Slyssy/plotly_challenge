@@ -41,4 +41,4 @@ Created a bubble chart using Plotly that displays each sample for the participan
 ### Step 6: Create a Table to Display Metadata
 Displayed the sample metadata, i.e., an individual's demographic information for the participant selected from the dropdown. I then displayed that data in the html webpage.
   
-![Project Screen Shot](belly_button_biodiversity/Images/belly_button_biodiversity.png)
+![Project Screen Shot](Images/belly_button_biodiversity.png)
